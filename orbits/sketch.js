@@ -6,10 +6,12 @@ function setup() {
 
 timestep = 60;
 
-theta = - 0.785;
-r = 200;
-theta_dot = 0.01 * timestep;
-w = 100;
+theta = - 0.2;
+
+theta_dot = 0.001 * timestep;
+w = 200;
+r = w + 100
+
 
 p_r = 0;
 P_theta = 0
@@ -20,9 +22,10 @@ p_theta_dot = 0;
 p_r_dot_dot = 0;
 p_theta_dot_dot = 0;
 
-g = 10**7;
+g = 0.70 * 10**6;
 
 function draw() {
+
   //clear();
   stroke(255);
   strokeWeight(2);
@@ -30,6 +33,7 @@ function draw() {
   background(30)
   //clear();
   translate(500, 400);
+  scale(.5);
   rotate(theta);
   ellipse(0, 0, w);
  
@@ -38,7 +42,7 @@ function draw() {
 
   if (theta > 0)
   {
-  	p_r_dot_dot = p_r * theta_dot * theta_dot - g / (p_r * p_r);
+  	p_r_dot_dot = p_r * p_theta_dot * p_theta_dot - g / (p_r * p_r);
   	p_theta_dot_dot = -2 * p_r_dot * p_theta_dot / p_r;
 
 
@@ -62,7 +66,7 @@ function draw() {
   stroke(255, 255, 255);
   ellipse(p_r * sin(p_theta), -p_r * cos(p_theta), 3);
   
-  if(p_r < w / 2)
+  /*if(p_r < w / 2)
   {
   	//p_r = 0;
 	//p_theta = 0
@@ -76,6 +80,6 @@ function draw() {
 	g = 0;
 
 	theta_dot = 0;
-  }
+  }*/
 
 }
